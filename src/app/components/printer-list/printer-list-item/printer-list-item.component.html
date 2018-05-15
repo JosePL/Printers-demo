@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>{{printer.name}}</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-sm btn-link" (click)="downloadDetails()" title="Download Printer Report"><i class="fa fa-download"></i></button>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-sm btn-link" [routerLink]="['/edit', printer.id]" title="Edit Printer"><i class="fa fa-edit"></i></button>
+    </div>
+  </div>
+  <div class="card-body">
+      <div><strong>Status: </strong>{{printer.status}}
+        <i [ngClass]="{'text-muted': printer.status===StatusType.Unknown, 'text-success': printer.status===StatusType.Ready, 'text-danger': printer.status===StatusType.Error}" class="fa fa-circle" ></i>
+      </div>
+      <div><strong>IP: </strong>{{printer.address}}</div>
+      <div><strong>Description: </strong>{{printer.description}}</div>
+  </div>
+</div>

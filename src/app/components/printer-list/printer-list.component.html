@@ -1,0 +1,12 @@
+<div class="row">
+  <div>
+    <h2>Printer list </h2>
+  </div>
+  <a type="button" [routerLink]="['/edit']" class="ml-3 btn btn-primary text-uppercase">Add Printer</a>
+</div>
+<div class="row">
+  <div *ngFor="let i of printers" class="col-sm-4">
+    <printer-list-item [printer]="i"></printer-list-item>
+  </div>
+</div>
+

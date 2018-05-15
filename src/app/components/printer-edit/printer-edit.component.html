@@ -1,0 +1,48 @@
+<div *ngIf="!isLoading">
+  <div class="row">
+    <h2>{{isEditMode ? 'Edit' : 'New'}} Printer</h2>
+  </div>
+
+  <form [formGroup]="printerForm">
+    <div class="row">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="printer-name">Name</span>
+        </div>
+        <input type="text" class="form-control" formControlName="name" aria-describedby="printer-name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="printer-status">Status</span>
+        </div>
+        <select class="custom-select" formControlName="status" aria-describedby="printer-status">
+          <option value="{{StatusType.Unknown}}">{{StatusType.Unknown}}</option>
+          <option value="{{StatusType.Ready}}">{{StatusType.Ready}}</option>
+          <option value="{{StatusType.Error}}">{{StatusType.Error}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="printer-address">IP address</span>
+        </div>
+        <input type="text" class="form-control" formControlName="address" aria-describedby="printer-address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="printer-description">Description</span>
+        </div>
+        <textarea type="text" class="form-control" formControlName="description" aria-describedby="printer-description" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <button type="button" [routerLink]="['/']" class="btn btn-danger text-uppercase">Cancel</button>
+      <button type="button" (click)="onSave()" class="btn btn-success text-uppercase ml-2">Save</button>
+    </div>
+  </form>
+</div>

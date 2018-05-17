@@ -1,12 +1,12 @@
 # Printers-demo
 
-##Usage
+## Usage
 
-###Run unit tests
+### Run unit tests
 `npm run test`
 
-###Run end-to-end tests
+### Run end-to-end tests
 `npm run e2e`
 
-###Start app
+### Start app
 `npm start`

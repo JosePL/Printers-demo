@@ -41,7 +41,8 @@
       </div>
     </div>
     <div class="row">
-      <button type="button" [routerLink]="['/']" class="btn btn-danger text-uppercase">Cancel</button>
+      <button type="button" [routerLink]="['/']" class="btn btn-default text-uppercase">Cancel</button>
+      <button type="button" (click)="onDelete()" class="btn btn-danger text-uppercase ml-2">Delete</button>
       <button type="button" (click)="onSave()" class="btn btn-success text-uppercase ml-2">Save</button>
     </div>
   </form>

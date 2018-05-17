@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { PrinterModel } from '../../models/printer.model';
 import { StatusType } from '../../enums/status-type';
+import { PrinterService } from '../../services/printer.service';
 
 @Component({
   selector: 'printer-edit',
@@ -19,8 +20,9 @@ export class PrinterEditComponent implements OnInit, OnDestroy {
   public printerForm: FormGroup;
 
   private activatedRouteSubscription: Subscription;
+  private printerServiceSubscription: Subscription;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private printerService: PrinterService) {
     
   }
 
@@ -29,23 +31,40 @@ export class PrinterEditComponent implements OnInit, OnDestroy {
       const id = params['id'];
       if (id && id > 0) {
         this.isEditMode = true;
+        
+        this.printerServiceSubscription = this.printerService.getPrinter(id).subscribe(res => {
+          this.printer = res;
+          this.initForm();
+          this.isLoading = false;
+        });
       } else {
         this.printer = this.createEmptyPrinter();
+        this.initForm();
+        this.isLoading = false;
       }
-      
-      this.initForm();
-      this.isLoading = false;
     });
   }
 
   ngOnDestroy(): void {
     this.activatedRouteSubscription.unsubscribe();
+    if (this.printerServiceSubscription) {
+      this.printerServiceSubscription.unsubscribe();
+    }
   }
 
   onSave(): void {
     console.log('Saving...');
-    const printer = this.getFormData();
-    console.log(printer);
+    const newPrinter = this.getFormData();
+    if (newPrinter.id == 0) {
+      this.printerService.addPrinter(newPrinter);
+    } else {
+      this.printerService.updatePrinter(newPrinter);
+    }
+    this.router.navigateByUrl('/');
+  }
+
+  onDelete(): void {
+    this.printerService.deletePrinter(this.printer.id);
     this.router.navigateByUrl('/');
   }
 

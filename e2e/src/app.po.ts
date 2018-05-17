@@ -5,7 +5,19 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  async getUrl() {
+    return await browser.getCurrentUrl();
+  }
+
+  clickAddPrinterButton() {
+    this.getAddPrinterButton().click();
+  }
+
+  getAddPrinterButton() {
+    return element(by.css('a.btn-primary'));
+  }
+
+  getPrinters() {
+    return element(by.css('.list-item'));
   }
 }

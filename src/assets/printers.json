@@ -1,0 +1,6 @@
+[ 
+    { "id": 1, "name": "Desktop Printer", "status": "Ready", "address": "192.168.0.191", "description": "Personal desktop printer" }, 
+    { "id": 2, "name": "Unknown Printer", "status": "Unknown", "address": "192.168.0.199", "description": "A printer noone knows anything about" }, 
+    { "id": 3, "name": "Color Printer", "status": "Ready", "address": "192.168.0.100", "description": "Powerful color printer in the main corridor"  }, 
+    { "id": 4, "name": "Malfunctioned Printer", "status": "Error", "address": "192.168.0.190", "description": "A printer that is broken for a long time..."  } 
+]

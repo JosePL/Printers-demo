@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PrinterListComponent } from './printer-list/printer-list.component';
 import { PrinterListItemComponent } from './printer-list/printer-list-item/printer-list-item.component';
 import { PrinterEditComponent } from './printer-edit/printer-edit.component';
+import { PrinterService } from '../services/printer.service';
+import { DownloadService } from '../services/download.service';
 
 const routes: Routes = [
   { path: '', component: PrinterListComponent },
@@ -23,10 +26,11 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
+    HttpModule,
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PrinterService, DownloadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

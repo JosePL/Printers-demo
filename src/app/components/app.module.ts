@@ -10,6 +10,8 @@ import { PrinterListItemComponent } from './printer-list/printer-list-item/print
 import { PrinterEditComponent } from './printer-edit/printer-edit.component';
 import { PrinterService } from '../services/printer.service';
 import { DownloadService } from '../services/download.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../../environments/environment';
 
 const routes: Routes = [
   { path: '', component: PrinterListComponent },
@@ -28,7 +30,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpModule,
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [PrinterService, DownloadService],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@
         </div>
         <input type="text" class="form-control" formControlName="name" aria-describedby="printer-name">
       </div>
+      <small *ngIf="isSubmitted && !printerForm.controls.name.valid" class="text-danger">Name is required</small>
     </div>
     <div class="row">
       <div class="input-group">
@@ -23,6 +24,7 @@
           <option value="{{StatusType.Error}}">{{StatusType.Error}}</option>
         </select>
       </div>
+      <small *ngIf="isSubmitted && !printerForm.controls.status.valid" class="text-danger">Status is required</small>
     </div>
     <div class="row">
       <div class="input-group">
@@ -31,6 +33,7 @@
         </div>
         <input type="text" class="form-control" formControlName="address" aria-describedby="printer-address">
       </div>
+      <small *ngIf="isSubmitted && !printerForm.controls.address.valid" class="text-danger">IP address is required</small>
     </div>
     <div class="row">
       <div class="input-group">

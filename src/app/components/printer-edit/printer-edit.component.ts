@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { PrinterModel } from '../../models/printer.model';
@@ -16,6 +16,7 @@ export class PrinterEditComponent implements OnInit, OnDestroy {
   public printer: PrinterModel;
   public StatusType = StatusType;
   public isEditMode: boolean = false;
+  public isSubmitted: boolean = false;
   public isLoading: boolean = true;
   public printerForm: FormGroup;
 
@@ -53,6 +54,10 @@ export class PrinterEditComponent implements OnInit, OnDestroy {
   }
 
   onSave(): void {
+    this.isSubmitted = true;
+    if (!this.printerForm.valid) {
+      return;
+    }
     console.log('Saving...');
     const newPrinter = this.getFormData();
     if (newPrinter.id == 0) {
@@ -70,10 +75,10 @@ export class PrinterEditComponent implements OnInit, OnDestroy {
 
   private initForm(): void {
     this.printerForm = new FormGroup({
-      'id': new FormControl(this.printer.id),
-      'name': new FormControl(this.printer.name),
-      'status': new FormControl(this.printer.status),
-      'address': new FormControl(this.printer.address),
+      'id': new FormControl(this.printer.id, Validators.required),
+      'name': new FormControl(this.printer.name, Validators.required),
+      'status': new FormControl(this.printer.status, Validators.required),
+      'address': new FormControl(this.printer.address, Validators.required),
       'description': new FormControl(this.printer.description)
     });
   }
